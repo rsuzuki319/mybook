@@ -1,0 +1,19 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+import time
+katakana=[u'ア',u'イ',u'ウ',u'エ',u'オ']
+
+file=open('1.txt')
+
+
+mm=file.read()
+memo=mm.encode('utf-8')
+for m in memo:
+    if m in katakana:
+    	word=word+m
+    else:
+        print (word)
+        word=''
+
+file.close()
+
