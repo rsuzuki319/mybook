@@ -1,0 +1,4 @@
+math is 90
+english is 80
+japanese is 95
+chemistry 100
