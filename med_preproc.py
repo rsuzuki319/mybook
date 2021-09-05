@@ -57,10 +57,9 @@ tag=[]
 top=[]
 second=[]
 lines=[]
-#print('args1:[{}]'.format(args[1]))
 
-#
-#med-dlk0811c2,tsv
+
+
 with open(args[1]) as f:
     reader = csv.reader(f, delimiter='\t')
     lk = [row for row in reader]
@@ -75,7 +74,7 @@ for ee in lg:
     else:
 
         keydic[ee[0]]=ee[1]
-        #print (ee[0])
+       
 
 
 if (1):
@@ -91,18 +90,18 @@ if (1):
             pass
         else:
             continue
-        #print (l[1])
+        
 
         maintag=l[1][2:3]
         
         if (l[1][0:1]=='O'):
-            #print (newline)
+            
 
             continue
         if (l[1][0:3]=='B-O'):
             word=l[0].strip()
 
-            #print (word)
+            
             if (word in tagdic):
                 print ("exist in tagdic")
                 paracount=1
@@ -120,13 +119,13 @@ if (1):
                 tag=['O']
 
             else:
-                #print ("NO in dic")
+                
                 if (paracount==1):
 
                     wd.append(word)
                     tag=['O']
                     res=createtag(top,tag,wd)
-                    print (res)
+                    
                     lines.append([res])
                     top=[]
                     wd=[]
@@ -136,9 +135,9 @@ if (1):
                         top.append(word)                
                         wd.append(word)
                         tag=['O']
-                        #print ('frist no')
+                       
                     elif (count==1):
-                        #print ('second no')
+                        
                         wd.append(word)
                         tag=['O']
                         res=createtag(top,tag,wd)
@@ -177,7 +176,7 @@ if (1):
             else:    
                 if (len(top)>0):
                     res=createtag(top,tag,wd)
-                    print (res)
+                    
                     lines.append([res])
                     top=[]
                     wd=[]
@@ -191,10 +190,10 @@ if (1):
             if (maintag in tag):
                 wd.append(l[0].strip())
             else:
-                print ("new tag without B")
+                
 
                 res=createtag(top,tag,wd)
-                print (res)
+                
                 lines.append([res])
                 tag=[maintag]
                 wd=[l[0].strip()]
@@ -206,7 +205,7 @@ if (1):
             word=l[0].strip()
             if (len(top)>0):
                     res=createtag(top,tag,wd)
-                    print (res)
+                    
                     lines.append([res])
                     top=[]
                     wd=[]
@@ -220,10 +219,10 @@ if (1):
             if (maintag in tag):
                 wd.append(l[0].strip())
             else:
-                print ("new tag without B")
+                
 
                 res=createtag(top,tag,wd)
-                print (res)
+                
                 lines.append([res])
                 tag=[maintag]
                 wd=[l[0].strip()]
