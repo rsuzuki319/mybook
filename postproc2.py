@@ -11,7 +11,7 @@ import re
 #from pyknp import Juman
 def find_tag(lg,w):
     for ll in lg:
-        #print (ll[0])
+       
         if (ll[0]==w):
             wtag=ll[1]
             break
@@ -26,11 +26,11 @@ def createdic(lg,seqno):
 
             tagdic[ll[0]]=ll[1]
             
-    print (tagdic)
+    
     return tagdic
 def find_keyp(lg,w):
     for ll in lg:
-        #print (ll[0])
+        
         if (ll[0]==w):
             wtag=True
             break
@@ -57,10 +57,7 @@ tag=[]
 top=[]
 second=[]
 lines=[]
-#print('args1:[{}]'.format(args[1]))
 
-#
-#med-dlk0811c2,tsv
 with open(args[1]) as f:
     reader = csv.reader(f, delimiter='\t')
     lk = [row for row in reader]
@@ -68,15 +65,14 @@ with open(args[2]) as g:
     reader = csv.reader(g, delimiter=',')
     lg = [row for row in reader]
 keydic=dict()
-print (len(lg))
+
 for ee in lg:
     if ee[0] in keydic:
         continue
     else:
 
         keydic[ee[0]]=ee[1]
-        #print (ee[0])
-
+        
 
 if (1):
     k=0
@@ -91,20 +87,20 @@ if (1):
             pass
         else:
             continue
-        #print (l[1])
+       
 
         maintag=l[1][2:3]
         
         if (l[1][0:1]=='O'):
-            #print (newline)
+            
 
             continue
         if (l[1][0:3]=='B-O'):
             word=l[0].strip()
 
-            #print (word)
+            
             if (word in tagdic):
-                print ("exist in tagdic")
+                
                 paracount=1
                 count=0
                 top.append(word)
@@ -112,7 +108,7 @@ if (1):
                 wd.append(word)
                 tag=['O']
             elif (word in tagdic2):
-                print ("exist in 2tagdic")
+                
                 paracount=2
                 top.append(word)
                 
@@ -120,13 +116,13 @@ if (1):
                 tag=['O']
 
             else:
-                #print ("NO in dic")
+                
                 if (paracount==1):
 
                     wd.append(word)
                     tag=['O']
                     res=createtag(top,tag,wd)
-                    print (res)
+                    
                     lines.append([res])
                     top=[]
                     wd=[]
@@ -136,13 +132,13 @@ if (1):
                         top.append(word)                
                         wd.append(word)
                         tag=['O']
-                        #print ('frist no')
+                       
                     elif (count==1):
-                        #print ('second no')
+                        
                         wd.append(word)
                         tag=['O']
                         res=createtag(top,tag,wd)
-                        print (res)
+                        
                         lines.append([res])
                         top=[]
                         wd=[]                        
@@ -159,7 +155,7 @@ if (1):
             else:    
                 if (len(top)>0):
                     res=createtag(top,tag,wd)
-                    print (res)
+                    
                     lines.append([res])
                     top=[]
                     wd=[]
@@ -191,10 +187,10 @@ if (1):
             if (maintag in tag):
                 wd.append(l[0].strip())
             else:
-                print ("new tag without B")
+                
 
                 res=createtag(top,tag,wd)
-                print (res)
+                
                 lines.append([res])
                 tag=[maintag]
                 wd=[l[0].strip()]
@@ -206,7 +202,7 @@ if (1):
             word=l[0].strip()
             if (len(top)>0):
                     res=createtag(top,tag,wd)
-                    print (res)
+                    
                     lines.append([res])
                     top=[]
                     wd=[]
@@ -223,7 +219,7 @@ if (1):
                 print ("new tag without B")
 
                 res=createtag(top,tag,wd)
-                print (res)
+                
                 lines.append([res])
                 tag=[maintag]
                 wd=[l[0].strip()]
