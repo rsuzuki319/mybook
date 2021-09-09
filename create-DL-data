@@ -1,0 +1,69 @@
+create-tag-data-for-DL
+09-07-2021
+python med4-clean-key.py dlkarte0910.csv cleankey0910.tsv
+
+python med4-clean-canma.py dlkarte0910.csv dlk0910c2.tsv
+
+<tag-DL  server>
+:diff from med4-tformat.py ; if (sentence==’’):
+
+med5-tformat.py dlk0910c2.tsv med-dlk0910c3.tsv
+
+medkey4-tformat.py  cleankey0910.tsv med-cleanley0910.tsv
+
+
+med-preproc2.py med-dlk0910c3.csv med-cleankey0910.tsv medkey2-pair.tsv 
+med-out10-dlk0910.tsv med-res-dlk0910.tsv med-10out.tsv
+  
+:need to fix a bug, star from I without B item
+
+med-postproc10.py med-10out.tsv med-10out-revised.tsv
+
+Then
+
+mkdir kartetag
+:dev,test,train
+
+
+tformat-3part.py  med-10out-revised.tsv kartetag
+
+***************************************
+revised 09/08
+:add empty line as the end of sentence
+med-karte-addline.py med-dlk0910c2.tsv med-dlk0910-addline.tsv
+
+med-preproc2.py med-dlk0910-addline.csv med-cleankey0910.tsv medkey2-pair.tsv 
+med-out12.tsv med-res120.tsv med-12out.tsv
+
+: modified version of adjusting tags for DL
+med-postproc12.py 12out.tsv med-12out-rev4.tsv
+
+************************************************
+hucking work
+:Use single line ‘\n’ as a sentence break, (two lines with hankaku+\n)
+:remove them and insert ‘\n’ 
+
+remove-spaceline.py med-12out-rev4.tsv allkarte.tsv
+
+
+: 4000 is no of sentences
+med-dist-3part.py allkarte.tsv kartetag 4000 
+*********************************************************
+revised again
+final?
+
+09/08/2021
+
+
+add-spaceline.py med-dlk0919c2.tsv med-addline12.tsv
+
+med-preproc13.py med-addline12.csv med-cleankey0910.tsv medkey2-pair.tsv 
+med-13o.tsv med-res13.tsv med-out13.tsv
+:med13o.tsv is using write()
+:med-out13.tsv is using csv.writer , no newline , can be used.
+
+: modified version13 of adjusting tags for DL
+med-postproc13.py med-13o.tsv med-13o-revised.tsv med-13o-debug.tsv
+
+*******************************
+
