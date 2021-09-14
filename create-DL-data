@@ -1,5 +1,5 @@
 create-tag-data-for-DL
-09-07-2021
+
 python med4-clean-key.py dlkarte0910.csv cleankey0910.tsv
 
 python med4-clean-canma.py dlkarte0910.csv dlk0910c2.tsv
@@ -39,8 +39,8 @@ med-out12.tsv med-res120.tsv med-12out.tsv
 med-postproc12.py 12out.tsv med-12out-rev4.tsv
 
 ************************************************
-hucking work
-:Use single line ‘\n’ as a sentence break, (two lines with hankaku+\n)
+Dirty work
+:Use single line ‘\n’ as a sentence break, (fix the following problem:two lines with hankaku+\n)
 :remove them and insert ‘\n’ 
 
 remove-spaceline.py med-12out-rev4.tsv allkarte.tsv
